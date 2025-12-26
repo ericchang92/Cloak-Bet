@@ -1,0 +1,181 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.sub-title {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  min-width: 12rem;
+  font-size: 1rem;
+}
+
+.button {
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+.muted {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.95rem;
+}
+
+.error {
+  color: #b91c1c;
+  text-align: left;
+  margin: 0.5rem 0 0;
+}
+
+.open-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.open-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+}
+
+.open-title {
+  font-weight: 700;
+  text-align: left;
+}
+
+.open-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.hand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.hand-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+}
+
+.hand-card.selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.hand-label {
+  font-weight: 700;
+}
+
+.result-box {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: #f0f9ff;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  text-align: left;
+}
+
+.result-title {
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.notes {
+  margin: 0;
+  padding-left: 1.25rem;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+  .hand-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
