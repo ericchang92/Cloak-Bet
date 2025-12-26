@@ -4,6 +4,9 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
+  if (!deployer) {
+    throw new Error("Missing deployer account. Set PRIVATE_KEY in .env to deploy on Sepolia.");
+  }
 
   const deployedFHECounter = await deploy("FHECounter", {
     from: deployer,
