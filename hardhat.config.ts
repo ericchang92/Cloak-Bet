@@ -6,16 +6,23 @@ import "@typechain/hardhat";
 import "hardhat-deploy";
 import "hardhat-gas-reporter";
 import type { HardhatUserConfig } from "hardhat/config";
-import { vars } from "hardhat/config";
 import "solidity-coverage";
 
 import "./tasks/accounts";
 import "./tasks/FHECounter";
+import "./tasks/CloakBet";
 
-// Run 'npx hardhat vars setup' to see the list of variables that need to be set
+import * as dotenv from "dotenv";
+dotenv.config();
 
-const MNEMONIC: string = vars.get("MNEMONIC", "test test test test test test test test test test test junk");
-const INFURA_API_KEY: string = vars.get("INFURA_API_KEY", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+const INFURA_API_KEY = process.env.INFURA_API_KEY ?? "";
+const PRIVATE_KEY_RAW = (process.env.PRIVATE_KEY ?? "").trim();
+const PRIVATE_KEY =
+  PRIVATE_KEY_RAW.length === 0
+    ? ""
+    : PRIVATE_KEY_RAW.startsWith("0x")
+      ? PRIVATE_KEY_RAW
+      : `0x${PRIVATE_KEY_RAW}`;
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
@@ -24,7 +31,7 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      sepolia: vars.get("ETHERSCAN_API_KEY", ""),
+      sepolia: process.env.ETHERSCAN_API_KEY ?? "",
     },
   },
   gasReporter: {
@@ -34,28 +41,16 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      accounts: {
-        mnemonic: MNEMONIC,
-      },
       chainId: 31337,
     },
     anvil: {
-      accounts: {
-        mnemonic: MNEMONIC,
-        path: "m/44'/60'/0'/0/",
-        count: 10,
-      },
       chainId: 31337,
       url: "http://localhost:8545",
     },
     sepolia: {
-      accounts: {
-        mnemonic: MNEMONIC,
-        path: "m/44'/60'/0'/0/",
-        count: 10,
-      },
       chainId: 11155111,
-      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      url: INFURA_API_KEY ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}` : "https://rpc.sepolia.org",
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
     },
   },
   paths: {
